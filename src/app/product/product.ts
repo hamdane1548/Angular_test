@@ -9,5 +9,10 @@ import { Component } from '@angular/core';
 
 })
 export class Product {
+  products = [
+    {name : "Computer",price : 1338,selected : true,},
+    {name : "Printer",price : 338,selected : false,},
+    {name : "Computer",price : 2338,selected : true,}
 
+  ]
 }
