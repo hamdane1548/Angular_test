@@ -17,12 +17,16 @@ export class Product implements OnInit{
    constructor(private productServices: ProductServices) {
    }
   ngOnInit() {
-
+     this.getAllproduct();
+  }
+  getAllproduct(){
+    this.products=this.productServices.getAllproducts();
   }
   handleDeltet(id : number){
       let v=confirm("et vous sur de  suprrimer le produit ");
       if(v==true){
-        this.products=this.products.filter(p=>p.id != id);
+       this.productServices.deleteproduct(id);
+        this.getAllproduct();
       }
   }
 }
