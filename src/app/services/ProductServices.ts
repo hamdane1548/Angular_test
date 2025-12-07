@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductServices {
-  products = [
-    {id:1, name : "Computer",price : 1338,selected : true,},
-    {id:2,name : "Printer",price : 338,selected : false,},
-    {id:3,name : "Computer",price : 2338,selected : true,}
-  ]
-   constructor() {
+
+   constructor(private https : HttpClient) {
    }
    getAllproducts(){
-    return this.products;
+    return this.https.get("http://localhost:8085/product")
    }
    deleteproduct(id : number){
-    this.products=this.products.filter(p=>p.id !=id);
+     return this.https.delete("http://localhost:8085/delete/"+id);
    }
 }

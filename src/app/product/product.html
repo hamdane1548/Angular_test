@@ -14,8 +14,8 @@
       @for (p of products ;track p){
         <tr >
           <td class="py-5">{{p.id}}</td>
-          <td>{{p.name}}</td>
-          <td>{{p.price}}</td>
+          <td>{{p.nom}}</td>
+          <td>{{p.prix}}</td>
           @if (p.selected) {
             <mat-icon>check</mat-icon>
           } @else {

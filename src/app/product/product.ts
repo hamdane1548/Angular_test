@@ -13,20 +13,34 @@ import {ProductServices} from '../services/ProductServices';
 
 })
 export class Product implements OnInit{
-   products: Array<any> = [];
+   products: any=[];
    constructor(private productServices: ProductServices) {
    }
   ngOnInit() {
      this.getAllproduct();
   }
   getAllproduct(){
-    this.products=this.productServices.getAllproducts();
+    this.productServices.getAllproducts().subscribe({
+      next : resp => {
+        this.products = resp
+      },
+      error : err => {
+        console.log(err)
+      },
+    });
   }
   handleDeltet(id : number){
       let v=confirm("et vous sur de  suprrimer le produit ");
       if(v==true){
-       this.productServices.deleteproduct(id);
-        this.getAllproduct();
+       this.productServices.deleteproduct(id).subscribe({
+         next : resp =>{
+           this.getAllproduct();
+         },
+         error : err => {
+           console.log(err)
+         }
+       });
+
       }
   }
 }
