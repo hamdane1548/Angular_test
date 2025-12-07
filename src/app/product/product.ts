@@ -1,18 +1,28 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MatIcon} from '@angular/material/icon';
+import {ProductServices} from '../services/ProductServices';
 
 @Component({
   selector: 'app-product',
-  imports: [],
+  imports: [
+    MatIcon
+  ],
   templateUrl: './product.html',
   styleUrl: './product.css',
   standalone : true
 
 })
-export class Product {
-  products = [
-    {name : "Computer",price : 1338,selected : true,},
-    {name : "Printer",price : 338,selected : false,},
-    {name : "Computer",price : 2338,selected : true,}
+export class Product implements OnInit{
+   products: Array<any> = [];
+   constructor(private productServices: ProductServices) {
+   }
+  ngOnInit() {
 
-  ]
+  }
+  handleDeltet(id : number){
+      let v=confirm("et vous sur de  suprrimer le produit ");
+      if(v==true){
+        this.products=this.products.filter(p=>p.id != id);
+      }
+  }
 }
